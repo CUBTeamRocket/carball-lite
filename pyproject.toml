@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "carball-lite"
+version = "0.1.0"
+description = ""
+authors = ["Ivan Malison <IvanMalison@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "^1.18.2"
+pandas = "^1.0.3"
+boxcars-py = { git = "https://github.com/CUBTeamRocket/boxcars-py" }
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api" 
