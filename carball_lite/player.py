@@ -89,6 +89,7 @@ class Player:
 
     def parse_player_stats(self, player_stats: dict):
         self.name = player_stats["Name"]
+        self.platform = player_stats["Platform"]
         self.online_id = player_stats["OnlineID"]
         self.is_orange = bool(player_stats["Team"])
         self.score = player_stats["Score"]
