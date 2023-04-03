@@ -57,6 +57,7 @@ class Player:
     def create_from_actor_data(self, actor_data: dict, teams: List['Team'], objects: List[str]):
         self.name = actor_data['name']
         if 'Engine.PlayerReplicationInfo:bBot' in actor_data and actor_data['Engine.PlayerReplicationInfo:bBot']:
+            logger.warn("player considered bot due to actor data fields")
             self.is_bot = True
             self.online_id = get_online_id_for_bot(bot_map, self)
 
@@ -89,7 +90,7 @@ class Player:
 
     def parse_player_stats(self, player_stats: dict):
         self.name = player_stats["Name"]
-        self.platform = player_stats["Platform"]
+        self.platform = player_stats.get("Platform")
         self.online_id = player_stats["OnlineID"]
         self.is_orange = bool(player_stats["Team"])
         self.score = player_stats["Score"]
@@ -101,6 +102,7 @@ class Player:
 
         logger.debug('Created Player from stats: %s', self)
         if self.is_bot or self.online_id == '0' or self.online_id == 0:
+            logger.warn(f"Player considered bot: is_bot: {self.is_bot} online_id: {self.online_id}")
             self.online_id = get_online_id_for_bot(bot_map, self)
 
         return self
